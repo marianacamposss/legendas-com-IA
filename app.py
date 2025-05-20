@@ -1,32 +1,17 @@
-# Importa o módulo 'os' para interagir com o sistema operacional,
-# como por exemplo, para acessar variáveis de ambiente.
+
 import os
-
-# Importa classes do Flask para criar a aplicação web, lidar com requisições e retornar respostas JSON.
 from flask import Flask, request, jsonify
-
-# Importa CORS para permitir requisições de diferentes origens (necessário para front-ends em domínios diferentes).
 from flask_cors import CORS
-
-# Importa a função para carregar variáveis de ambiente de um arquivo .env.
 from dotenv import load_dotenv
-
-# Importa o SDK do Google Generative AI.
 import google.generativeai as genai
-
-# Importa os tipos Enum para definir categorias de dano e limiares de bloqueio para as configurações de segurança.
-# Isso torna o código mais legível e menos propenso a erros do que usar strings diretamente.
 from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
 # Carrega as variáveis de ambiente definidas no arquivo .env para o ambiente de execução.
-# Isso é útil para manter chaves de API e outras configurações sensíveis fora do código.
 load_dotenv()
 
 # Cria uma instância da aplicação Flask.
-# __name__ é uma variável especial em Python que representa o nome do módulo atual.
 app = Flask(__name__)
 
-# Habilita o CORS (Cross-Origin Resource Sharing) para a aplicação Flask.
 # Isso permite que a API seja acessada por aplicações web rodando em outros domínios/portas.
 CORS(app)
 
@@ -50,8 +35,8 @@ except ValueError as e:
 # Define as configurações de geração para o modelo de IA.
 # Estas configurações influenciam como o modelo gera o texto.
 generation_config = {
-    "temperature": 0.8,       # Controla a aleatoriedade da saída. Valores mais altos (ex: 0.8) tornam a saída mais criativa e aleatória. Valores mais baixos (ex: 0.2) tornam-na mais determinística e focada.
-    "top_p": 0.9,             # Amostragem por nucleus. Controla a diversidade. O modelo considera apenas os tokens com probabilidade acumulada até top_p.
+    "temperature": 0.8,       # Controla a aleatoriedade da saída. 
+    "top_p": 0.9,             # Controla a diversidade. ens com probabilidade acumulada até top_p.
     "top_k": 40,              # O modelo seleciona o próximo token entre os 'k' tokens mais prováveis.
     "max_output_tokens": 150, # Define o número máximo de tokens (palavras/subpalavras) que o modelo pode gerar na resposta.
 }
@@ -97,8 +82,6 @@ except Exception as e:
     print(f"Erro ao inicializar o modelo GenerativeModel: {e}")
     # Em um app de produção, você pode querer logar este erro de forma mais robusta
     # e talvez impedir que o app inicie ou retorne um status de erro global.
-
-# ... (o restante do seu código app.py permanece o mesmo) ...
 
 # Define a rota '/gerar_legenda' que aceita requisições POST.
 # Esta rota será usada para receber uma imagem e gerar uma legenda para ela.

@@ -78,7 +78,7 @@ Abra o index.html em seu navegador (ou use um servidor local).
 ## 🌍 Projeto Publicado
 Você pode testar o projeto online através do seguinte link:
 
-👉 legendas-com-ia.vercel.app
+👉 (https://legendas-com-ia.vercel.app/)
 
 # 📸 Exemplo de Uso
 Escolha uma imagem.
